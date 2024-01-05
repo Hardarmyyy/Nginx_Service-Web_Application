@@ -1,0 +1,6 @@
+{"message":"Shutdown signal is received\n","timestamp":"05-01 15:47:01 +01:00","type":"out","process_id":0,"app_name":"STAGE-TWO"}
+{"message":"Closing all connections...and getting ready to close server\n","timestamp":"05-01 15:47:01 +01:00","type":"out","process_id":0,"app_name":"STAGE-TWO"}
+{"message":"Shutdown signal is received\n","timestamp":"05-01 15:47:01 +01:00","type":"out","process_id":1,"app_name":"STAGE-TWO"}
+{"message":"Closing all connections...and getting ready to close server\n","timestamp":"05-01 15:47:01 +01:00","type":"out","process_id":1,"app_name":"STAGE-TWO"}
+{"message":"Shutting down server and all database connection...\n","timestamp":"05-01 15:47:03 +01:00","type":"out","process_id":0,"app_name":"STAGE-TWO"}
+{"message":"Shutting down server and all database connection...\n","timestamp":"05-01 15:47:03 +01:00","type":"out","process_id":1,"app_name":"STAGE-TWO"}
