@@ -7,7 +7,7 @@ services:
     build:
       context: . # This specifies the directory where the server dockerfile will be running
       dockerfile: Dockerfile
-    image: hardarmyyy/backend
+    image: hardarmyyy/test_nodejs_server
     container_name: server-container
     restart: always
     networks:
