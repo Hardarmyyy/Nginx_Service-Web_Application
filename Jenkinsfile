@@ -4,28 +4,16 @@ pipeline {
 
   stages {
 
-    stage('Clean Ups') {
+    stage('Build Images') {
       steps {
-        echo "Cleaning up environment ...."
-        sh "docker-compose down" 
+        echo "Installing depencies ...."
+        sh "npm install"
+        // echo "Building docker image ...."
+        // sh "docker-compose -f docker-compose.yaml build"
+        // sh "docker tag hardarmyyy/test_nodejs_server ${TEST_NODEJS_SERVER}"
+        // sh "docker tag hardarmyyy/mongo:latest ${TEST_NODEJS_DB}"
       }
     }
-
-    // stage('Installing packages') {
-    //   steps {
-    //     echo "Installing depencies ...."
-    //     sh "npm install"
-    //   }
-    // }
-
-    // stage('Build Images') {
-    //   steps {
-    //     echo "Building docker image ...."
-    //     sh "docker-compose -f docker-compose.yaml build"
-    //     sh "docker tag hardarmyyy/test_nodejs_server ${TEST_NODEJS_SERVER}"
-    //     sh "docker tag hardarmyyy/mongo:latest ${TEST_NODEJS_DB}"
-    //   }
-    // }
 
     // stage('Deploy and Push Images') {
     //   steps {
