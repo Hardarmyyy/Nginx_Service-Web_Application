@@ -16,8 +16,6 @@ services:
       - gracefulshutdown-network
     env_file:
       - .env # ensure to point the path to the env file
-    ports: 
-      - "${PORT}:${PORT}"  # container will be exposed to the outside on this port
     environment:
       - "PORT=${PORT}"
       - "MONGODB_URI=${MONGODB_URI}" # EX. "VAR_NAME=value"
@@ -38,6 +36,25 @@ services:
       - gracefulshutdown-network
     volumes:
       - mongo-data:/data/db  # # Mount a volume for persisting data on the db
+
+  # Web service
+  web:
+    build:
+      context: ./WEB-SERVICE # This specifies the directory for the dockerfile of the web service
+      dockerfile: Dockerfile
+    image: hardarmyyy/nginx-gracefulshutdown-web-05-09
+    labels:
+      hardarmyyy/nginx-gracefulshutdown-web-05-09: latest
+    container_name: nginx-backend-web
+    restart: always
+    networks:
+      - gracefulshutdown-network
+    env_file:
+      - .env # ensure to point the path to the env file
+    ports: 
+      - "${WEBPORT}:80"  # container will be exposed to the outside on this port
+    depends_on:
+      - server
 
 networks:
   gracefulshutdown-network:
