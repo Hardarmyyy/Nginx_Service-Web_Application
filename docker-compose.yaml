@@ -7,9 +7,9 @@ services:
     build:
       context: ./SERVER # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
-    image: hardarmyyy/nginx-gracefulshutdown-server-05-09
+    image: ${USERNAME}/nginx-gracefulshutdown-server-05-09
     labels:
-      hardarmyyy/nginx-gracefulshutdown-server-05-09: latest
+      ${USERNAME}/nginx-gracefulshutdown-server-05-09: latest
     container_name: nginx-backend-server
     restart: always
     networks:
@@ -29,7 +29,7 @@ services:
   db:
     image: mongo:4.4
     labels: 
-      hardarmyyy/nginx-gracefulshutdown-mongodb-05-09: latest
+      ${USERNAME}/nginx-gracefulshutdown-mongodb-05-09: latest
     container_name: nginx-backend-mongodb
     restart: always
     networks:
@@ -42,9 +42,9 @@ services:
     build:
       context: ./WEB-SERVICE # This specifies the directory for the dockerfile of the web service
       dockerfile: Dockerfile
-    image: hardarmyyy/nginx-gracefulshutdown-web-05-09
+    image: ${USERNAME}/nginx-gracefulshutdown-web-05-09
     labels:
-      hardarmyyy/nginx-gracefulshutdown-web-05-09: latest
+      ${USERNAME}/nginx-gracefulshutdown-web-05-09: latest
     container_name: nginx-backend-web
     restart: always
     networks:
