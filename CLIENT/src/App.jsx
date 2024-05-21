@@ -1,11 +1,11 @@
+import { Outlet } from 'react-router-dom'
 import './App.css'
 
 function App() {
-  
 
   return (
     <>
-      <p> Hello world </p>
+      <Outlet></Outlet>
     </>
   )
 }
