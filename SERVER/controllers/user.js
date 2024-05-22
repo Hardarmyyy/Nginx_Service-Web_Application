@@ -47,6 +47,41 @@ exports.getUser = async (req, res, next) => {
 
 }
 
+exports.getAllUsers = async (req, res, next) => {
+
+    try {
+
+        const allUsers = await User.aggregate([
+            {
+                $project: {
+                    _id: 0,
+                    name: "$name",
+                }
+            },
+            {
+                $sort: {
+                    createdAt: -1
+                }
+            }
+        ])
+
+        if (!allUsers.length) return res.status(404).json({
+            error: 'The user list is empty', 
+            allUsers: allUsers
+        })
+
+        res.status(200).json({ 
+            message: 'All users fetched successfully', 
+            allUsers: allUsers
+        })
+
+    }
+    catch (err) {
+        res.status(500).send({error: err.message});
+    }
+
+}
+
 exports.updateUser = async (req, res, next) => {
         const {user_id} = req.params
 
