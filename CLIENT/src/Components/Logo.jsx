@@ -7,7 +7,7 @@ return (
 
 <>
 
-    <nav className='text-white cursor-pointer font-Jost font-bold md:text-3xl lg:text-4xl'> 
+    <nav className='text-white cursor-pointer font-Jost font-bold sm:text-2xl md:text-3xl lg:text-4xl'> 
 
         <Link to='/'> P <span className='text-crimson'>N</span> P </Link> 
 

@@ -13,7 +13,7 @@ return (
 
         <nav className='text-white cursor-pointer font-Jost font-bold'> 
 
-            <ul className='md:text-md lg:text-lg'>
+            <ul className='sm:text-sm md:text-md lg:text-lg'>
                 <Link to='/user' className='hover:text-crimson-light'> Profiles </Link>
             </ul>
 
