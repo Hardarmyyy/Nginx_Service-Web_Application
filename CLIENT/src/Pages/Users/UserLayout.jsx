@@ -1,12 +1,13 @@
 import React from 'react'
 import { Outlet } from 'react-router-dom'
+import Navigation from '../../Layouts/Navigation'
 
 const UserLayout = () => {
 
 return (
 
 <>
-    <h1> This is the user outlet page </h1>
+    <Navigation></Navigation>
     <Outlet></Outlet>
 </>
 )
