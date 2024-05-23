@@ -1,8 +1,9 @@
 import { createSlice, isPending, isFulfilled, isRejected} from "@reduxjs/toolkit";
-import {ADDUSER} from '../Services/profileApi'
+import {ADDUSER, ALLUSERS} from '../Services/profileApi'
 
 const initialState = {
     status: 'idle',
+    error: null,
     allProfiles: [],
 }
 
@@ -17,22 +18,27 @@ export const profileSlice = createSlice({
                 .addCase(ADDUSER.fulfilled, (state, action) => {
                     
                 })
+                .addCase(ALLUSERS.fulfilled, (state, action) => {
+                    const {allUsers} = action.payload
+                    state.allProfiles = state.allProfiles.concat(allUsers)
+                })
                 .addMatcher(
-                    isFulfilled(ADDUSER),
+                    isFulfilled(ADDUSER, ALLUSERS),
                     (state) => {
                     state.status = 'success'
                 }
                 )
                 .addMatcher(
-                    isPending(ADDUSER),
+                    isPending(ADDUSER, ALLUSERS),
                     (state) => {
                     state.status = 'Loading.......';
                 }
                 )
                 .addMatcher(
-                    isRejected(ADDUSER),
+                    isRejected(ADDUSER, ALLUSERS),
                     (state, action) => {
                         state.status = 'failed';
+                        state.error = action.payload.error;
                 }
                 )
     }
