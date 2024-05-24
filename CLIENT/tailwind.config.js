@@ -10,7 +10,10 @@ export default {
         'crimson': {
           light: '#F56991',
           DEFAULT: '#DC143C'
-        } 
+        },
+        'dropdown': {
+          DEFAULT: '#181818'
+        }
       },
       fontFamily: {
         'Jost': ['Jost', 'sans-serif'],
