@@ -8,14 +8,13 @@ exports.test = async (req, res) => {
 
 exports.addUser = async (req, res, next) => {
 
-    const {name} = req.body
+    const {fName, lName, email, role, github_url} = req.body
 
     try {
-        if (!name) {
-            return res.status(400).json({error: 'All fields are required'})
-        }
+        if (!fName || !lName || !email || !role || !github_url) return res.status(400).json({error: 'All fields are required'})
+        
         else {
-            const user = new User({name: name})
+            const user = new User({...req.body})
             await user.save()
             res.status(201).json({message: 'user added successfully', user: user})
         }
@@ -34,9 +33,7 @@ exports.getUser = async (req, res, next) => {
         }
 
         const user = await User.findById({_id: user_id})
-        if (!user) {
-            return res.status(404).json({error: 'User not found'});
-        }
+        if (!user) return res.status(404).json({error: 'User not found'});
 
         res.status(200).json({user: user});
 
@@ -55,7 +52,12 @@ exports.getAllUsers = async (req, res, next) => {
             {
                 $project: {
                     _id: 0,
-                    name: "$name",
+                    userId: "$_id",
+                    fName: "$fName",
+                    lName: "$lName",
+                    email: "$email",
+                    role: "$role",
+                    github_url: "$github_url",
                 }
             },
             {
@@ -91,18 +93,14 @@ exports.updateUser = async (req, res, next) => {
         }
 
         const user = await User.findOne({_id: user_id})
-        if (!user) {
-            return res.status(404).json({error: 'User not found'});
-        }
+        if (!user) return res.status(404).json({error: 'User not found'});
+        
+        const {fName, lName, email, role, github_url} = req.body;
+        if (!fName || !lName || !email || !role || !github_url) return res.status(400).json({error: 'All fields are required'});
+        
+        const updateUser = await User.findByIdAndUpdate({_id: user_id}, {$set: req.body}, {new: true})
 
-        const {name} = req.body;
-        if (!name) {
-            return res.status(400).json({error: 'All fields are required'});
-        }
-        user.name = name;
-        await user.save();
-
-        res.status(200).json({message: 'user updated successfully', user: user});
+        res.status(200).json({message: 'user updated successfully', user: updateUser});
 
     }
     catch (err) {
@@ -120,10 +118,8 @@ exports.deleteUser = async (req, res, next) => {
         }
 
         const user = await User.findOneAndDelete({_id: user_id})
-        if (!user) {
-            return res.status(404).json({error: 'User not found'});
-        }
-
+        if (!user)return res.status(404).json({error: 'User not found'});
+        
         res.status(200).json({message: 'user deleted successfully'});
 
     }
