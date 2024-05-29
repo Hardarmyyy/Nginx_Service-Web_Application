@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react'
 import {ADDUSER} from '../../Services/profileApi'
 import { useSelector, useDispatch } from 'react-redux'
 import UseValidateUserForm from './UseValidateUserForm'
+import {toast} from 'react-toastify'
 
 
 const UseAddUser = () => {
@@ -93,12 +94,14 @@ const UseAddUser = () => {
                 github_url: ''
               })
           }
+          toast.success(message, {
+            toastStyle: { background: 'green', color: 'white' }
+        })
       })
       .catch((err) => {
-        console.log('Something went wrong')
-        // toast.error('Something went wrong', {
-        //     toastStyle: { background: 'red', color: 'white' }
-        // })
+        toast.error('Something went wrong', {
+            toastStyle: { background: 'red', color: 'white' }
+        })
       })
       .finally(() => {
           setIsSubmitting(false); // Re-enable the button

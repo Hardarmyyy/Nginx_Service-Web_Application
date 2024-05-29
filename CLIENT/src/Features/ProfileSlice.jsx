@@ -1,9 +1,9 @@
 import { createSlice, isPending, isFulfilled, isRejected} from "@reduxjs/toolkit";
 import {ADDUSER, ALLUSERS} from '../Services/profileApi'
+import {toast} from 'react-toastify'
 
 const initialState = {
     status: 'idle',
-    error: null,
     allProfiles: [],
 }
 
@@ -39,7 +39,10 @@ export const profileSlice = createSlice({
                     isRejected(ADDUSER, ALLUSERS),
                     (state, action) => {
                         state.status = 'failed';
-                        state.error = action.payload.error;
+                        const err = action.payload.error
+                        toast.error(err, {
+                            toastStyle: { background: 'red', color: 'white' }
+                        })
                 }
                 )
     }
