@@ -2,7 +2,7 @@ import React from 'react'
 import Button from './Button'
 
 
-const UserForm = ({user, error, handleFormSubmit, handleChange}) => {
+const UserForm = ({status, user, error, handleFormSubmit, handleChange}) => {
 
 return (
 
@@ -19,7 +19,7 @@ return (
                     value={user?.fName} 
                     onChange={handleChange} 
                     placeholder='Enter first name' 
-                    name='fname' 
+                    name='fName' 
                     maxLength={30}
                 />
                 {error && <p className='text-crimson text-sm absolute left-0'> {error.fName} </p>}
@@ -33,7 +33,7 @@ return (
                     value={user?.lName} 
                     onChange={handleChange} 
                     placeholder='Enter last name' 
-                    name='lname' 
+                    name='lName' 
                     maxLength={30}
                 />
                 {error && <p className='text-crimson text-sm absolute left-0'> {error.lName} </p>}
@@ -72,12 +72,12 @@ return (
             <input 
                 type='text'
                 className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
-                value={user?.github} 
+                value={user?.github_url} 
                 onChange={handleChange} 
                 placeholder='Ex: https://github.com/username' 
-                name='github' 
+                name='github_url' 
             />
-            {error && <p className='text-crimson text-sm absolute left-0'> {error.github} </p>}
+            {error && <p className='text-crimson text-sm absolute left-0'> {error.github_url} </p>}
         </div>
 
         <div className='text-center'>

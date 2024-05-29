@@ -16,7 +16,8 @@ export const profileSlice = createSlice({
     extraReducers (builder) {
         builder
                 .addCase(ADDUSER.fulfilled, (state, action) => {
-                    
+                    const {user} = action.payload
+                    state.allProfiles = state.allProfiles.concat(user)
                 })
                 .addCase(ALLUSERS.fulfilled, (state, action) => {
                     const {allUsers} = action.payload
@@ -29,7 +30,7 @@ export const profileSlice = createSlice({
                 }
                 )
                 .addMatcher(
-                    isPending(ADDUSER, ALLUSERS),
+                    isPending(ADDUSER),
                     (state) => {
                     state.status = 'Loading.......';
                 }
