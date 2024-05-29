@@ -14,8 +14,16 @@ exports.addUser = async (req, res, next) => {
         if (!fName || !lName || !email || !role || !github_url) return res.status(400).json({error: 'All fields are required'})
         
         else {
-            const user = new User({...req.body})
+            let user = new User({...req.body})
             await user.save()
+            user = {
+                userId: user._id,
+                fName: user.fName,
+                lName: user.lName,
+                email: user.email,
+                role: user.role,
+                github_url: user.github_url
+            }
             res.status(201).json({message: 'user added successfully', user: user})
         }
     }
