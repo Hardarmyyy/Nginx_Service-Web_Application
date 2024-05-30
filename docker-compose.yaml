@@ -2,6 +2,27 @@ version: "3.7"
 
 services:
 
+  # CLIENT
+  client:
+    build:
+      context: ./CLIENT # This specifies the directory for the dockerfile of the server service
+      dockerfile: Dockerfile
+    image: ${USERNAME}/nginx-gracefulshutdown-frontend-05-09
+    labels:
+      ${USERNAME}/nginx-gracefulshutdown-frontend-05-09: latest
+    container_name: nginx-backend-frontend
+    restart: always
+    networks:
+      - gracefulshutdown-network
+    env_file:
+      - .env # ensure to point the path to the env file
+    environment:
+      - "VITE_API_URI=${VITE_API_URI}" # EX. "VAR_NAME=value"
+    depends_on:
+      - server
+    volumes:
+      - dist:/gracefulshutdown-frontend/dist # Mount a volume for persisting data on the frontend
+
   # SERVER
   server:
     build:
@@ -16,6 +37,8 @@ services:
       - gracefulshutdown-network
     env_file:
       - .env # ensure to point the path to the env file
+    ports: 
+    - "${PORT}:${PORT}" 
     environment:
       - "PORT=${PORT}"
       - "MONGODB_URI=${MONGODB_URI}" # EX. "VAR_NAME=value"
@@ -23,7 +46,6 @@ services:
       - db
     volumes:
       - gracefulshutdown-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
-
 
   # MongoDB database
   db:
@@ -55,6 +77,9 @@ services:
       - "${WEBPORT}:80"  # container will be exposed to the outside on this port
     depends_on:
       - server
+      - client
+    volumes:
+      - dist:/usr/share/nginx/html/
 
 networks:
   gracefulshutdown-network:
@@ -63,4 +88,5 @@ networks:
 volumes:
   mongo-data: {}
   gracefulshutdown-data: {}
+  dist: {}
 
