@@ -16,7 +16,11 @@ export default {
         },
         'dropdown': {
           DEFAULT: '#181818'
-        }
+        },
+        'my-bg': {
+            primary: '#333333',
+            DEFAULT: 'rgb(16, 15, 15, 0.6)'
+          }
       },
       fontFamily: {
         'Jost': ['Jost', 'sans-serif'],

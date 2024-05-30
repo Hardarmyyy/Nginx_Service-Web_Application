@@ -11,10 +11,6 @@ const navRef = useRef(null);
 
 const [show, setShow] = useState(false)
 
-const handleProfileClick = (e) => {
-    e.stopPropagation();
-}
-
 useEffect(() => {
 
     const handleDocumentClick = (e) => {
@@ -47,7 +43,7 @@ return (
                     </p>
 
                     {show && 
-                        <div onClick={handleProfileClick} className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md'>
+                        <div className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md'>
                             <Link to='/user' className='my-1 hover:text-crimson-light'> View profiles </Link>
                             <Link to='/user/add-user' className='my-1 hover:text-crimson-light'> Add profile </Link>
                         </div>

@@ -1,6 +1,7 @@
 import React from 'react'
 import UseAddUser from '../../Hooks/Users/UseAddUser'
 import UserForm from '../../Components/UserForm'
+import Modal from '../../Components/Modal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -15,6 +16,8 @@ const handleFormSubmit = async (e) => {
 
 return (
     <>
+        {status === 'Loading.......' && <Modal></Modal>}
+
         <ToastContainer 
             position='top-right'
             autoClose={5000}
