@@ -24,7 +24,7 @@ return (
             rtl={false}
         />
 
-        <section className='flex flex-col items-center py-4'>
+        <section className='flex flex-col items-center py-4 min-h-screen'>
 
             <h2 className='text-2xl font-bold my-4'> Add new profile </h2>
 

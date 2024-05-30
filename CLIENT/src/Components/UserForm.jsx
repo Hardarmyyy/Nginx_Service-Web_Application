@@ -1,6 +1,6 @@
 import React from 'react'
 import Button from './Button'
-
+import Spinner from './Spinner'
 
 const UserForm = ({status, user, error, handleFormSubmit, handleChange}) => {
 
@@ -81,7 +81,7 @@ return (
         </div>
 
         <div className='text-center'>
-            <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading.......' ? <span> Creating profile .... </span> : <span> Add profile </span>} </Button> 
+            <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading.......' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile .... </span> : <span> Add profile </span>} </Button> 
         </div>
 
     </form>

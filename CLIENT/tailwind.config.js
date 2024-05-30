@@ -6,6 +6,9 @@ export default {
   ],
   theme: {
     extend: {
+      animation: {
+        'spin-slow': 'spin 1.5s linear infinite',
+      },
       colors: {
         'crimson': {
           light: '#F56991',
