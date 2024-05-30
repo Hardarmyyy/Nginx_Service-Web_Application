@@ -1,10 +1,56 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import ProfileCard from '../../Components/ProfileCard';
+import Modal from '../../Components/Modal'
 
 const AllUsers = () => {
 
+const allProfiles = useSelector((state) => state?.profiles?.allProfiles);
+const status = useSelector((state) => state?.profiles?.status);
+
+if (status === 'Loading.......') {
+    return (
+        <Modal></Modal> // SKELETAL LOADING IMPLEMETATION
+    );
+}
+
+if (status === 'failed') {
+    return (
+        <p className="w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center"> Failed to load profiles. Please try again. </p>
+    );
+}
+
 return (
 <>
-    <h1> Get all users page </h1>
+
+    { status !== 'Loading.......' && !allProfiles.length
+
+        ? <p className='w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center'> Profile list is empty </p> 
+        
+            :
+
+                <section className='grid justify-center items-center content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-4 xl:grid-cols-5 xl:gap-5 px-8 py-10'>
+
+                    {allProfiles.map((profile) => 
+
+                        <div key={profile.userId}>
+
+                            <ProfileCard
+                                src={profile.src}
+                                firstName={profile.fName}
+                                lastName={profile.lName}
+                                role={profile.role}
+                                email={profile.email}
+                                github_url={profile.github_url}
+                            >
+                            </ProfileCard>
+
+                        </div>
+                    )}
+
+                </section>
+    }
+    
 </>
 )
 }

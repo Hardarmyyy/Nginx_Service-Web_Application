@@ -30,7 +30,7 @@ export const profileSlice = createSlice({
                 }
                 )
                 .addMatcher(
-                    isPending(ADDUSER),
+                    isPending(ADDUSER, ALLUSERS),
                     (state) => {
                     state.status = 'Loading.......';
                 }
