@@ -28,7 +28,7 @@ return (
                         <tbody>
                             <tr>
                                 <td className="px-2 py-2 text-gray-500 font-semibold"> Email </td>
-                                <td className="px-2 py-2"> {email} </td>
+                                <td className="pr-10 py-2"> {email} </td>
                             </tr>
                         </tbody>
                     </table>
