@@ -75,8 +75,8 @@ exports.getAllUsers = async (req, res, next) => {
             }
         ])
 
-        if (!allUsers.length) return res.status(404).json({
-            error: 'The user list is empty', 
+        if (!allUsers.length) return res.status(200).json({
+            message: 'The user list is empty', 
             allUsers: allUsers
         })
 
