@@ -16,7 +16,7 @@ const handleFormSubmit = async (e) => {
 
 return (
     <>
-        {status === 'Loading.......' && <Modal></Modal>}
+        {status === 'Loading...' && <Modal></Modal>}
 
         <ToastContainer 
             position='top-right'
