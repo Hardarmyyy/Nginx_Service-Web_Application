@@ -24,14 +24,10 @@ return (
                         <p> {role} </p>
                     </div>
 
-                    <table className="text-xs my-3">
-                        <tbody>
-                            <tr>
-                                <td className="px-2 py-2 text-gray-500 font-semibold"> Email </td>
-                                <td className="pr-10 py-2"> {email} </td>
-                            </tr>
-                        </tbody>
-                    </table>
+                    <div className="text-xs my-3 text-center px-2 flex justify-center items-center">
+                        <p className="text-gray-500 font-semibold mx-3"> Email </p>
+                        <span className=""> {email} </span>
+                    </div>
 
                     <div className="text-center my-3">
                         <Link className="text-xs text-blue-500 italic hover:underline hover:text-blue-600 font-medium" to={github_url} target='_'> View Profile </Link>
