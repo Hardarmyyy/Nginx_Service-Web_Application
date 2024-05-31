@@ -10,6 +10,7 @@ import UserLayout from '../Pages/Users/UserLayout.jsx'
 import AllUsers from '../Pages/Users/AllUsers.jsx'
 import AddUser from '../Pages/Users/AddUser.jsx'
 import UpdateUser from '../Pages/Users/UpdateUser.jsx'
+import User404 from '../Pages/Users/User404.jsx'
 
 
 
@@ -23,8 +24,9 @@ export const router = createBrowserRouter(
             <Route path='/user' element={<UserLayout/>}> 
 
                 <Route index element={<AllUsers/>}></Route>
-                <Route path=":add-user" element={<AddUser/>}></Route>
-                <Route path=":edit-user/:id" element={<UpdateUser/>}></Route>
+                <Route path="add-user" element={<AddUser/>}></Route>
+                <Route path="edit-user/:id" element={<UpdateUser/>}></Route>
+                <Route path='*' element={<User404/>}></Route>
 
             </Route>
 
