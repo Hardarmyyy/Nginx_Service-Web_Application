@@ -1,8 +1,12 @@
 import React from 'react'
 import Button from './Button'
 import Spinner from './Spinner'
+import { useLocation } from 'react-router-dom'
 
 const UserForm = ({status, user, error, handleFormSubmit, handleChange}) => {
+
+const {pathname} = useLocation()
+const showCreateProfileButton = pathname === '/user/add-user'
 
 return (
 
@@ -81,7 +85,12 @@ return (
         </div>
 
         <div className='text-center'>
-            <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile .... </span> : <span> Add profile </span>} </Button> 
+            {showCreateProfileButton 
+                ? 
+                    <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile .... </span> : <span> Add profile </span>} </Button> 
+                    : 
+                    <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Updating  profile .... </span> : <span> Update profile </span>} </Button> 
+            }
         </div>
 
     </form>

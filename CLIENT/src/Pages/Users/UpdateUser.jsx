@@ -1,10 +1,60 @@
 import React from 'react'
+import { useSelector } from 'react-redux'
+import { useParams, Link } from 'react-router-dom'
+import { ToastContainer } from 'react-toastify'
+import { LiaUserEditSolid } from "react-icons/lia";
+import 'react-toastify/dist/ReactToastify.css';
+import UserForm from '../../Components/UserForm'
+import ImageAvatar from '../../Components/ImageAvatar'
+
 
 const UpdateUser = () => {
 
+const {id} = useParams()
+const allProfiles = useSelector((state) => state?.profiles?.allProfiles)
+const currentUser = allProfiles.find(profile => profile.userId === id)
+
+if (!currentUser)  {
+    return (
+        <div className="w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center"> 
+            <p> The user does not exist. </p>
+            <p> Click <Link to={'/user'} className='text-blue-800 hover:underline'> here </Link> to go back to profiles </p>
+        </div>
+    );
+}
+
 return (
+
 <>
-    <h1> Update user page </h1>
+    <ToastContainer 
+        position='top-right'
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick
+        rtl={false}
+    />
+
+    <section className='flex flex-col items-center py-4 h-screen lg:translate-y-0'>
+
+        <h2 className='text-2xl font-bold my-4'> Update your profile </h2>
+
+        <div className="photo-wrapper p-2 relative">
+            {currentUser?.src 
+                ? <img className="w-32 h-32 rounded-full mx-auto" src={src} alt={firstName}/> 
+                    : 
+                        <>
+                            <ImageAvatar></ImageAvatar> <LiaUserEditSolid className='text-crimson text-2xl absolute top-6 right-2 cursor-pointer' /> 
+                        </>
+            } 
+        </div>
+
+        <UserForm 
+            user={currentUser} 
+        >
+        </UserForm>
+
+    </section>
 </>
 )
 }

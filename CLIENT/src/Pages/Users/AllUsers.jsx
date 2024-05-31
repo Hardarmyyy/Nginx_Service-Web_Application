@@ -36,6 +36,7 @@ return (
                         <div key={profile.userId}>
 
                             <ProfileCard
+                                userId={profile.userId}
                                 src={profile.src}
                                 firstName={profile.fName}
                                 lastName={profile.lName}
