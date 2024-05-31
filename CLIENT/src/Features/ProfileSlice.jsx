@@ -1,5 +1,5 @@
 import { createSlice, isPending, isFulfilled, isRejected} from "@reduxjs/toolkit";
-import {ADDUSER, ALLUSERS} from '../Services/profileApi'
+import {ADDUSER, ALLUSERS, UPDATEUSER} from '../Services/profileApi'
 import {toast} from 'react-toastify'
 
 const initialState = {
@@ -19,18 +19,24 @@ export const profileSlice = createSlice({
                     const {user} = action.payload
                     state.allProfiles = state.allProfiles.concat(user)
                 })
+                .addCase(UPDATEUSER.fulfilled, (state, action) => {
+                    const {user} = action.payload
+                    const updatedUser = {userId: user._id, ...user}
+                    const updatedProfiles = state.allProfiles.filter((profile) => profile.userId !== user._id)
+                    state.allProfiles = [...updatedProfiles, updatedUser]
+                })
                 .addCase(ALLUSERS.fulfilled, (state, action) => {
                     const {allUsers} = action.payload
                     state.allProfiles = state.allProfiles.concat(allUsers)
                 })
                 .addMatcher(
-                    isFulfilled(ADDUSER, ALLUSERS),
+                    isFulfilled(ADDUSER, UPDATEUSER, ALLUSERS),
                     (state) => {
                     state.status = 'success'
                 }
                 )
                 .addMatcher(
-                    isPending(ADDUSER),
+                    isPending(ADDUSER, UPDATEUSER),
                     (state) => {
                     state.status = 'Loading...';
                 }
@@ -42,7 +48,7 @@ export const profileSlice = createSlice({
                 }
                 )
                 .addMatcher(
-                    isRejected(ADDUSER, ALLUSERS),
+                    isRejected(ADDUSER, UPDATEUSER, ALLUSERS),
                     (state, action) => {
                         state.status = 'failed';
                         const err = action.payload.error
