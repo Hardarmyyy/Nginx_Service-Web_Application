@@ -1,8 +1,9 @@
 import React from 'react'
 import ImageAvatar from './ImageAvatar'
+import { LiaUserEditSolid } from "react-icons/lia";
 import { Link } from 'react-router-dom'
 
-const ProfileCard = ({src, firstName, lastName, role, email, github_url}) => {
+const ProfileCard = ({userId, src, firstName, lastName, role, email, github_url}) => {
 
 return (
 
@@ -10,7 +11,11 @@ return (
 
         <div className="max-w-xs">
 
-            <div className="bg-white shadow-xl rounded-lg py-3">
+            <div className="bg-white shadow-xl rounded-lg py-3 relative">
+
+                <div className='cursor-pointer absolute top-4 right-2'>
+                    <Link to={`/user/edit-user/${userId}`}> <LiaUserEditSolid className='text-gray-600 text-xl' /> </Link>
+                </div>
 
                 <div className="photo-wrapper p-2">
                     {src ? <img className="w-32 h-32 rounded-full mx-auto" src={src} alt={firstName}/> : <ImageAvatar></ImageAvatar> }
