@@ -43,7 +43,7 @@ return (
                     </p>
 
                     {show && 
-                        <div className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md'>
+                        <div className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md z-50'>
                             <Link to='/user' className='my-1 hover:text-crimson-light'> View profiles </Link>
                             <Link to='/user/add-user' className='my-1 hover:text-crimson-light'> Add profile </Link>
                         </div>
