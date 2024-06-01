@@ -1,16 +1,18 @@
+import { lazy, Suspense } from 'react'
+import Modal from '../Components/Modal.jsx'
 import {createBrowserRouter, createRoutesFromElements, Route} from 'react-router-dom'
 
 import App from '../App.jsx'
 
-import LandingPage from '../Pages/LandingPage.jsx'
-import Notfound from '../Pages/Notfound.jsx'
+const LandingPage = lazy(() => import ('../Pages/LandingPage.jsx')) 
+const Notfound = lazy(() => import ('../Pages/Notfound.jsx'))
 
 
-import UserLayout from '../Pages/Users/UserLayout.jsx'
-import AllUsers from '../Pages/Users/AllUsers.jsx'
-import AddUser from '../Pages/Users/AddUser.jsx'
-import UpdateUser from '../Pages/Users/UpdateUser.jsx'
-import User404 from '../Pages/Users/User404.jsx'
+const UserLayout = lazy(() => import ('../Pages/Users/UserLayout.jsx'))
+const AllUsers = lazy(() => import ('../Pages/Users/AllUsers.jsx'))
+const AddUser = lazy(() => import ('../Pages/Users/AddUser.jsx')) 
+const UpdateUser = lazy(() => import ('../Pages/Users/UpdateUser.jsx')) 
+const User404 = lazy(() => import ('../Pages/Users/User404.jsx')) 
 
 
 
@@ -19,9 +21,9 @@ export const router = createBrowserRouter(
 
         <Route element={<App />}>
 
-            <Route path='/' element={<LandingPage/>}></Route>
+            <Route path='/' element={<Suspense fallback={<Modal></Modal>}> <LandingPage></LandingPage> </Suspense>}></Route>
 
-            <Route path='/user' element={<UserLayout/>}> 
+            <Route path='/user' element={<Suspense fallback={<Modal></Modal>}> <UserLayout></UserLayout> </Suspense>}> 
 
                 <Route index element={<AllUsers/>}></Route>
                 <Route path="add-user" element={<AddUser/>}></Route>
@@ -30,7 +32,7 @@ export const router = createBrowserRouter(
 
             </Route>
 
-            <Route path='*' element={<Notfound/>}></Route>
+            <Route path='*' element={<Suspense fallback={<Modal></Modal>}> <Notfound></Notfound> </Suspense>}></Route>
 
         </Route>
 
