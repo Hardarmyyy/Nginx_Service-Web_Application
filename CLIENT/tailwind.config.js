@@ -7,7 +7,8 @@ export default {
   theme: {
     extend: {
       animation: {
-        'spin-slow': 'spin 3.5s linear infinite'
+        'spin-slow': 'spin 3.5s linear infinite',
+        'spin-circle': 'circle 1.5s linear infinite'
       },
       keyframes: {
         spin: {
@@ -16,6 +17,10 @@ export default {
           '75%': { transform: 'scale(W.75)' },
           '100%': { transform: 'scale(1)' },
         },
+        circle: {
+          '0%': {transform: 'rotate(0deg)'},
+          '100%': {transform: 'rotate(360deg)'}
+        }
       },
       colors: {
         'crimson': {
