@@ -1,14 +1,12 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import Navigation from '../Layouts/Navigation'
+
 
 const Notfound = () => {
 
 return (
 
 <>
-
-    <Navigation></Navigation>
 
     <section className='w-full flex flex-col justify-center items-center text-lg font-Montserrat text-primary mx-auto sm:translate-y-40 lg:translate-y-36  relative'> 
         
