@@ -1,7 +1,7 @@
 import React from 'react'
 import { useSelector } from 'react-redux'
 import ProfileCard from '../../Components/ProfileCard';
-import Modal from '../../Components/Modal'
+import SkeletalLoading from '../../Components/SkeletalLoading';
 
 const AllUsers = () => {
 
@@ -10,7 +10,7 @@ const status = useSelector((state) => state?.profiles?.status);
 
 if (status === 'Loading.......') {
     return (
-        <Modal></Modal> // SKELETAL LOADING IMPLEMETATION
+        <SkeletalLoading listToRender={6}></SkeletalLoading> // SKELETAL LOADING IMPLEMETATION
     );
 }
 
