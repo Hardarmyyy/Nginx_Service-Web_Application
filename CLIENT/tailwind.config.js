@@ -40,16 +40,23 @@ export default {
         'Montserrat': ['Montserrat', 'sans-serif']
       },
       screens: {
-        'xsm': {'max': '425px'},
-        // => @media (max-width: 1024px) { ... }
-        'tablet': {'max': '768px'},
-        // => @media (max-width: 1024px) { ... }
-        
-        'laptop': {'max': '1024px'},
-        // => @media (max-width: 1024px) { ... }
+        'sm': {'min':'320px','max': '425px'},
+        // => @media (min-width: 320px and max-width: 425px) { ... }
 
-        'super': {'min': '2560px'},
-        // => @media (max-width: 1024px) { ... }
+        'md': {'min':'425px','max': '640px'},
+        // => @media (min-width: 425px and max-width: 640px) { ... }
+
+        'tablet': {'min':'640px','max': '768px'},
+        // => @media (min-width: 640px and max-width: 768px) { ... }
+
+        'mini': {'min':'768px', 'max': '1024px'},
+        // => @media (min-width: 768px and max-width: 1024px) { ... }
+        
+        'laptop': {'min':'1024px', 'max': '1440px'},
+        // => @media (min-width: 1024px and max-width: 1440px) { ... }
+
+        'super': {'min': '1440px'},
+        // => @media (min-width: 1440px) { ... }
       }
     },
   },
