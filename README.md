@@ -47,7 +47,7 @@
 👉2: Clone the GitHub repository to your local machine:
 
 ```bash
-git https://github.com/Hardarmyyy/Nginx_Service-Web_Application
+git clone https://github.com/Hardarmyyy/Nginx_Service-Web_Application
 ```
 
 👉3: Install the required dependencies for the frontend:
