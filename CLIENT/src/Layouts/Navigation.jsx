@@ -32,7 +32,7 @@ return (
 
         <Logo></Logo>
 
-        <nav className='w-1/4 text-white cursor-pointer font-Jost font-bold'> 
+        <nav className='w-1/4 text-white cursor-pointer font-Jost font-bold sm:hidden md:hidden'> 
 
             <div className='flex justify-end items-center sm:text-sm md:text-md lg:text-lg'>
 
