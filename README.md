@@ -101,12 +101,19 @@ USERNAME=<your dockerhub username> # Ex: dockerhub
 #### Building the docker images for the application
 
 ```bash
+# Run the cmd below to add the current user to the docker group
+sudo usermod -aG docker $USER
 # Run the cmd below in the root directory
 docker-compose --env-file .env build
 ```
 #### Deploying the docker images to dockerhub registery
 
 ```bash
+# Login to docker registry website to generate your token
+# Account -> Account settings -> security -> New access token
+# Run the cmd below to login your docker credentails
+docker login
+# Enter your username and the generated token as password
 # Run the cmd below in the root directory
 docker-compose push
 ```
