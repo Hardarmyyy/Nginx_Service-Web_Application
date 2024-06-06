@@ -28,7 +28,7 @@ useEffect(() => {
 return (
 
 <>
-    <header className='w-full bg-black px-4 py-2 flex justify-between items-center'>
+    <header className='w-full bg-black sticky top-0 z-50'>
 
         <div className='w-full px-4 py-2 flex justify-between items-center'>
 
