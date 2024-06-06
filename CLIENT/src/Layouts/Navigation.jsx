@@ -28,34 +28,37 @@ useEffect(() => {
 return (
 
 <>
-    <header className='min-w-full bg-black px-4 py-2 flex justify-between items-center'>
+    <header className='w-full bg-black px-4 py-2 flex justify-between items-center'>
 
-        <Logo></Logo>
+        <div className='w-full px-4 py-2 flex justify-between items-center'>
 
-        <nav className='w-1/4 text-white cursor-pointer font-Jost font-bold sm:hidden md:hidden'> 
+            <Logo></Logo>
 
-            <div className='flex justify-end items-center sm:text-sm md:text-md lg:text-lg'>
+            <nav className='w-1/4 text-white cursor-pointer font-Jost font-bold sm:hidden md:hidden'> 
 
-                <div onClick={() => setShow(!show)} ref={navRef} className='mx-1 relative cursor-pointer'>
+                <div className='flex justify-end items-center sm:text-sm md:text-md lg:text-lg'>
 
-                    <p className='flex items-center hover:text-crimson-light'>  
-                        Profile {show ? <IoIosArrowUp className='text-white ml-1 hover:text-crimson-light'/> : <IoIosArrowDown className='text-white ml-1'/> } 
-                    </p>
+                    <div onClick={() => setShow(!show)} ref={navRef} className='mx-1 relative cursor-pointer'>
 
-                    {show && 
-                        <div className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md z-50'>
-                            <Link to='/user' className='my-1 hover:text-crimson-light'> View profiles </Link>
-                            <Link to='/user/add-user' className='my-1 hover:text-crimson-light'> Add profile </Link>
-                        </div>
-                    }
+                        <p className='flex items-center hover:text-crimson-light'>  
+                            Profile {show ? <IoIosArrowUp className='text-white ml-1 hover:text-crimson-light'/> : <IoIosArrowDown className='text-white ml-1'/> } 
+                        </p>
+
+                        {show && 
+                            <div className='w-28 px-1 py-2 text-sm absolute right-0 rounded-sm bg-dropdown text-white flex flex-col items-center shadow-md z-50'>
+                                <Link to='/user' className='my-1 hover:text-crimson-light'> View profiles </Link>
+                                <Link to='/user/add-user' className='my-1 hover:text-crimson-light'> Add profile </Link>
+                            </div>
+                        }
+
+                    </div>
 
                 </div>
 
-            </div>
+            </nav>
 
-        </nav>
-
-
+        </div>
+        
     </header>
     
 </>

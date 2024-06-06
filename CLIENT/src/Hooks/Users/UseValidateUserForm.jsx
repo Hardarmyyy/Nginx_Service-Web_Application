@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 const UseValidateUserForm = (value) => {
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const githubRegex = /^https:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]{1,39}(?<!-)$/
+    const githubRegex = /^https:\/\/(www\.)?github\.com\/(?!.*--)[a-zA-Z0-9-]{1,39}$/;
 
     const [errors, setError] = useState({})
 

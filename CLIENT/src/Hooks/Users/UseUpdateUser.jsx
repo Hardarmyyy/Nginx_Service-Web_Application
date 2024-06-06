@@ -8,7 +8,7 @@ import {toast} from 'react-toastify'
 const UseUpdateUser = (id) => {
 
     const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
-    const githubRegex = /^https:\/\/(www\.)?github\.com\/[a-zA-Z0-9-]{1,39}(?<!-)$/;
+    const githubRegex = /^https:\/\/(www\.)?github\.com\/(?!.*--)[a-zA-Z0-9-]{1,39}$/;
 
     const status = useSelector((state) => state?.profiles?.status);
     const allProfiles = useSelector((state) => state?.profiles?.allProfiles)

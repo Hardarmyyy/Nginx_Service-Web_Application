@@ -12,14 +12,16 @@ body {
 }
 
 html, body {
-  height: 100%;
+  width: 100vw;
+  height: 100vh;
 }
 
 #root {
-  height: 100%;
+  width:100vw;
+  height: 100vh;
 }
 
 .spinner {
   transform: translateX(50%);
-  transform: translateY(1000%)
+  transform: translateY(1000%);
 }
