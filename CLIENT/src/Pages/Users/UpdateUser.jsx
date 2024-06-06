@@ -22,9 +22,9 @@ const handleFormSubmit = async (e) => {
 
 if (!currentUser && status !== 'Loading.......')  {
     return (
-        <div className="w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center"> 
+        <div className="w-full h-full flex flex-col justify-center items-center font-Montserrat sm:text-lg text-4xl text-center"> 
             <p> The user does not exist. </p>
-            <p> Click <Link to={'/user'} className='text-blue-800 hover:underline'> here </Link> to go back to profiles </p>
+            <p> Click <Link to={'/user'} className='text-blue-800 hover:underline font-bold'> here </Link> to go back to profiles </p>
         </div>
     );
 }
@@ -44,7 +44,8 @@ return (
     {status === 'Loading...' && <Modal></Modal>}
 
     { status !== 'Loading.......' && currentUser &&
-        <section className='flex flex-col items-center py-4 h-screen lg:translate-y-0'>
+    
+        <section className='w-full mini:h-full laptop:h-full super:h-full flex flex-col justify-center items-center py-4'>
 
             <h2 className='text-2xl font-bold my-4'> Update your profile </h2>
 

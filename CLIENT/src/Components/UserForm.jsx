@@ -89,7 +89,7 @@ return (
                 ? 
                     <Button margin='20px 0px' padding='10px 40px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile </span> : <span> Add profile </span>} </Button> 
                     : 
-                    <Button margin='20px 0px' padding='10px 40px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Updating profile .... </span> : <span> Update profile </span>} </Button> 
+                    <Button margin='20px 0px' padding='10px 35px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Updating profile </span> : <span> Update profile </span>} </Button> 
             }
         </div>
 
