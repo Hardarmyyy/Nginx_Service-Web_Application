@@ -16,7 +16,7 @@ if (status === 'Loading.......') {
 
 if (status === 'failed') {
     return (
-        <p className="w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center"> Failed to load profiles. Please try again. </p>
+        <p className="w-full h-full flex flex-col justify-center items-center font-Montserrat sm:text-sm md:text-lg tablet:text-xl mini:text-3xl laptop:text-4xl super:text-4xl font-bold text-center"> Failed to load profiles. Please try again. </p>
     );
 }
 
@@ -25,15 +25,17 @@ return (
 
     { status !== 'Loading.......' && !allProfiles.length
 
-        ? <p className='w-full min-h-full translate-y-32 font-Montserrat text-4xl font-bold text-center'> Profile list is empty </p> 
+        ?   <div className='w-full h-full flex flex-col justify-center items-center text-center'>  
+                <p className='font-Montserrat font-bold sm:text-sm md:text-lg tablet:text-xl mini:text-3xl laptop:text-4xl super:text-4xl'> Sorry! Profile list is empty </p>
+            </div> 
         
             :
 
-                <section className='grid justify-center items-center content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-4 xl:grid-cols-5 xl:gap-5 px-8 py-10'>
+                <section className='w-full flex flex-wrap items-center justify-center py-4 tablet:grid content-center tablet:grid-cols-3 tablet:gap-4'>
 
                     {allProfiles.map((profile) => 
 
-                        <div key={profile.userId}>
+                        <div key={profile.userId} className='m-2 w-60'>
 
                             <ProfileCard
                                 userId={profile.userId}
