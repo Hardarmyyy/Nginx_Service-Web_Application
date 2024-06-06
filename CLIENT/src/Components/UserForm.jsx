@@ -13,13 +13,13 @@ return (
 <>
     <form className='w-3/4 text-my-primary font-Montserrat' onSubmit={handleFormSubmit}>
 
-        <div className='w-full flex items-center justify-between'>
+        <div className='w-full md:flex tablet:flex mini:flex laptop:flex super:flex justify-between items-center'>
 
-            <div className='w-1/2 mb-4 relative mr-2'>
+            <div className='sm:w-full md:w-1/2 tablet:w-1/2 mini:w-1/2 laptop:w-1/2 super:w-1/2 mb-4 relative mr-2'>
                 <label className='font-bold'> First name <span className='text-crimson'> * </span></label> <br />
                 <input 
                     type='text' 
-                    className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
+                    className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 placeholder:text-sm focus:outline-none focus:border-slate-600'
                     value={user?.fName} 
                     onChange={handleChange} 
                     placeholder='Enter first name' 
@@ -29,11 +29,11 @@ return (
                 {error && <p className='text-crimson text-sm absolute left-0'> {error.fName} </p>}
             </div>
 
-            <div className='w-1/2 mb-4 relative ml-2'>
+            <div className='sm:w-full md:w-1/2 tablet:w-1/2 mini:w-1/2 laptop:w-1/2 super:w-1/2 mb-4 relative sm:ml-0 ml-2'>
                 <label className='font-bold'> Last name <span className='text-crimson'> * </span></label> <br />
                 <input 
                     type='text' 
-                    className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
+                    className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 placeholder:text-sm focus:outline-none focus:border-slate-600'
                     value={user?.lName} 
                     onChange={handleChange} 
                     placeholder='Enter last name' 
@@ -49,7 +49,7 @@ return (
             <label className='font-bold'> Email <span className='text-crimson'> * </span></label> <br />
             <input 
                 type='text'
-                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
+                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 placeholder:text-sm focus:outline-none focus:border-slate-600'
                 value={user?.email} 
                 onChange={handleChange} 
                 placeholder='user@example.com' 
@@ -62,7 +62,7 @@ return (
             <label className='font-bold'> Role <span className='text-crimson'> * </span></label> <br />
             <input 
                 type='text'
-                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
+                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 placeholder:text-sm focus:outline-none focus:border-slate-600'
                 value={user?.role} 
                 onChange={handleChange} 
                 placeholder='your role' 
@@ -75,10 +75,10 @@ return (
             <label className='font-bold'> Github Link <span className='text-crimson'> * </span></label> <br />
             <input 
                 type='text'
-                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 focus:outline-none focus:border-slate-600'
+                className='w-full px-2 py-1 border-2 rounded-md shadow-sm bg-white placeholder:italic placeholder:text-slate-400 placeholder:text-sm focus:outline-none focus:border-slate-600'
                 value={user?.github_url} 
                 onChange={handleChange} 
-                placeholder='Ex: https://github.com/username' 
+                placeholder='https://github.com/username' 
                 name='github_url' 
             />
             {error && <p className='text-crimson text-sm absolute left-0'> {error.github_url} </p>}
@@ -87,9 +87,9 @@ return (
         <div className='text-center'>
             {showCreateProfileButton 
                 ? 
-                    <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile .... </span> : <span> Add profile </span>} </Button> 
+                    <Button margin='20px 0px' padding='10px 40px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Creating profile </span> : <span> Add profile </span>} </Button> 
                     : 
-                    <Button margin='20px 0px' padding='10px 70px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Updating  profile .... </span> : <span> Update profile </span>} </Button> 
+                    <Button margin='20px 0px' padding='10px 40px'> {status === 'Loading...' ? <span className='flex items-center'> <Spinner></Spinner> Updating profile .... </span> : <span> Update profile </span>} </Button> 
             }
         </div>
 
