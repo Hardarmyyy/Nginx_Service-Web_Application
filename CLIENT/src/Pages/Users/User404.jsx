@@ -6,11 +6,11 @@ const User404 = () => {
 return (
 
 <>
-    <section className='w-full flex flex-col justify-center items-center text-lg font-Montserrat text-primary mx-auto sm:translate-y-40 lg:translate-y-36  relative'> 
+    <section className='w-full h-full flex flex-col justify-center items-center font-Montserrat mx-auto'> 
         
-        <h2 className='font-Jost md:text-4xl lg:text-5xl font-bold mb-2'> Page not found</h2>
+        <h2 className='font-Jost font-bold mb-2 sm:text-4xl md:text-4xl tablet:text-5xl mini:text-5xl laptop:text-5xl super:text-6xl'> Page not found</h2>
 
-        <p className='md:text-xl lg:text-3xl'>  Click <Link to='/user' className='text-blue-600'> here </Link> to go back to profiles</p>
+        <p className='sm:text-sm md:text-sm tablet:text-lg mini:text-lg laptop:text-lg super:text-xl'>  Click <Link to='/user' className='text-blue-600'> here </Link> to go back to profiles</p>
 
     </section>
 </>
