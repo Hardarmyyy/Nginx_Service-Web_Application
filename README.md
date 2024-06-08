@@ -1,4 +1,4 @@
- # Documentation of Three Tier Application Deployment using Docker-compose
+ # Documentation of Two Tier Application Deployment using Docker-compose
  
    -  Welcome to the documentation of a three tier application named PNP built using the MERN stack (MongoDB, Express, React, Node.js) with a Vite frontend project. This document will guide you through the key features and functionalities of the application and deployment on dockerhub using docker compose.
 
@@ -79,7 +79,7 @@ npm install
 cd SERVER
 touch .env
 # Paste the following in the .env file
-MONGODB_URI=<Your MongoDB Cluster URL>
+MONGODB_URI=<Your MongoDB Cluster Connection URI> # Register on mongodb atlas to get a MongoDB cluster coonection URI
 PORT=<Your desired port number>
 ```
 
@@ -88,7 +88,7 @@ PORT=<Your desired port number>
 ```bash
 touch .env
 # Paste the following in the .env file
-MONGODB_URI=<Your MongoDB Cluster URL>
+MONGODB_URI=<Your MongoDB Cluster Connection URI>
 PORT=<Your desired port number>
 VITE_API_URI=<your server url>
 WEBPORT=<external port for the nginx service> # Ex: 80
