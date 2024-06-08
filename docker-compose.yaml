@@ -41,8 +41,20 @@ services:
     environment:
       - "PORT=${PORT}"
       - "MONGODB_URI=${MONGODB_URI}" # EX. "VAR_NAME=value"
+    depends_on:
+      - db
     volumes:
       - gracefulshutdown-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
+
+  # MongoDB database
+  db:
+    image: mongo:4.4
+    container_name: nginx-backend-mongodb
+    restart: always
+    networks:
+      - gracefulshutdown-network
+    volumes:
+      - mongo-data:/data/db  # # Mount a volume for persisting data on the db
 
   # Web service
   web:
@@ -71,6 +83,7 @@ networks:
     driver: bridge
 
 volumes:
+  mongo-data: {}
   gracefulshutdown-data: {}
   dist: {}
 
