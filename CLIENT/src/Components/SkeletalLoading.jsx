@@ -5,9 +5,9 @@ const SkeletalLoading = ({listToRender}) => {
 return (
 
 <>
-    <section className='grid justify-center items-center content-center md:grid-cols-3 md:gap-4 lg:grid-cols-4 lg:gap-4 xl:grid-cols-5 xl:gap-5 px-8 py-10'>
+    <section className='w-full super:w-3/4 min-h-screen flex flex-wrap items-center justify-center tablet:justify-start py-4 mx-auto content-center mini:grid mini:grid-cols-4 mini:gap-2 laptop:grid laptop:grid-cols-5 laptop:gap-2 super:grid super:grid-cols-6 super:gap-2'>
         {Array(listToRender).fill(1).map((card, index) => 
-            <div key={index}>
+            <div key={index} className='w-60 m-2'>
                 <div role="status" className="max-w-xs flex flex-col justify-center items-center border border-gray-200 animate-pulse bg-white shadow-xl rounded-lg p-3 relative">
             
                     <svg

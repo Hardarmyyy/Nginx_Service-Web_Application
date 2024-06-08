@@ -12,7 +12,7 @@ const status = useSelector((state) => state?.profiles?.status);
 if (status === 'Loading.......') {
     return (
         <>
-            <SkeletalLoading listToRender={6}></SkeletalLoading> // SKELETAL LOADING IMPLEMETATION
+            <SkeletalLoading listToRender={6}></SkeletalLoading> 
             <Footer></Footer>
         </>
     );
@@ -21,7 +21,9 @@ if (status === 'Loading.......') {
 if (status === 'failed') {
     return (
         <>
-            <p className="w-full h-full flex flex-col justify-center items-center font-Montserrat sm:text-sm md:text-lg tablet:text-xl mini:text-3xl laptop:text-4xl super:text-4xl font-bold text-center"> Failed to load profiles. Please try again. </p>
+            <section className='w-full min-h-screen flex flex-col justify-center items-center font-Montserrat '>
+                <p className="sm:text-sm md:text-lg tablet:text-xl mini:text-3xl laptop:text-4xl super:text-4xl font-bold text-center"> Failed to load profiles. Please try again. </p>
+            </section>
             <Footer></Footer>
         </>
     );
@@ -34,15 +36,15 @@ return (
 
         ?   
             <>
-                <div className='w-full h-full flex flex-col justify-center items-center text-center'>  
+                <section className='w-full min-h-screen flex flex-col justify-center items-center text-center'>  
                     <p className='font-Montserrat font-bold sm:text-sm md:text-lg tablet:text-xl mini:text-3xl laptop:text-4xl super:text-4xl'> Sorry! Profile list is empty </p>
-                </div> 
+                </section> 
                 <Footer></Footer>
             </>
         
             :
                 <>
-                    <section className='w-full flex flex-wrap items-center justify-center py-4 tablet:grid content-center tablet:grid-cols-3 tablet:gap-4'>
+                    <section className='w-full super:w-3/4 min-h-screen flex flex-wrap items-center justify-center tablet:justify-start py-4 mx-auto content-center mini:grid mini:grid-cols-4 mini:gap-2 laptop:grid laptop:grid-cols-5 laptop:gap-2 super:grid super:grid-cols-6 super:gap-2'>
 
                         {allProfiles.map((profile) => 
 
@@ -63,6 +65,7 @@ return (
                         )}
 
                     </section>
+
                     <Footer></Footer>
                 </>
     }

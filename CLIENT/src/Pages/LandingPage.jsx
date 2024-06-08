@@ -9,7 +9,7 @@ const LandingPage = () => {
   return (
     <>
 
-      <section className='w-full min-h-screen p-4 flex sm:flex-col sm:justify-center md:justify-between mini:justify-between laptop:justify-between super:justify-between items-center'>
+      <section className='w-full super:w-3/4 super:mx-auto min-h-screen p-4 flex sm:flex-col sm:justify-center md:justify-between mini:justify-between laptop:justify-between super:justify-between items-center'>
 
           <div className='sm:w-full md:w-1/2 my-4 text-center mini:ml-8 laptop:ml-10 super:ml-16 relative'>
 

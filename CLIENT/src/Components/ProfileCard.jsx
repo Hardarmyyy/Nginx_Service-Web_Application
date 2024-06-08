@@ -31,7 +31,7 @@ return (
 
                     <div className="text-xs my-3 text-center px-2 flex justify-center items-center">
                         <p className="text-gray-500 font-semibold mx-3"> Email </p>
-                        <span className=""> {email} </span>
+                        <span className="flex flex-wrap items-center justify-center"> {email} </span>
                     </div>
 
                     <div className="text-center my-3">
