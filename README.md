@@ -1,6 +1,8 @@
- # Documentation of Two Tier Application Deployment using Docker-compose
+ # Documentation of Three Tier Application Deployment using Docker-compose
  
    -  Welcome to the documentation of a three tier application named PNP built using the MERN stack (MongoDB, Express, React, Node.js) with a Vite frontend project. This document will guide you through the key features and functionalities of the application and deployment on dockerhub using docker compose.
+
+   - Website URL: https://satyr-master-gnat.ngrok-free.app/
 
    ### Table of Contents
    - 🔗 Introduction
@@ -16,7 +18,7 @@
 
 ###  Introduction
 
-- This application is a simple web spplication that allows user to add profiles, update profiles and view all profiles that have been added to the system. The entire application is packaged in docker containers and deployed using docker compose.  
+- This application is a simple web application that allows user to add profiles, update profiles and view all profiles that have been added to the system. The entire application is packaged in docker containers and deployed using docker compose.  
 
 - <img src="./CLIENT//public//Landing Page screenshot.png">
 
