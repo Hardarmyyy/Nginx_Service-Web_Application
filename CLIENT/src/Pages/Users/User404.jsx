@@ -1,4 +1,5 @@
 import React from 'react'
+import Footer from '../../Layouts/Footer'
 import { Link } from 'react-router-dom'
 
 const User404 = () => {
@@ -13,6 +14,8 @@ return (
         <p className='sm:text-sm md:text-sm tablet:text-lg mini:text-lg laptop:text-lg super:text-xl'>  Click <Link to='/user' className='text-blue-600'> here </Link> to go back to profiles</p>
 
     </section>
+
+    <Footer></Footer>
 </>
 
 )

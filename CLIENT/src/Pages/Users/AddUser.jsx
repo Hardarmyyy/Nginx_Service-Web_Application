@@ -1,6 +1,7 @@
 import React from 'react'
 import UseAddUser from '../../Hooks/Users/UseAddUser'
 import UserForm from '../../Components/UserForm'
+import Footer from '../../Layouts/Footer'
 import Modal from '../../Components/Modal'
 import { ToastContainer } from 'react-toastify'
 import 'react-toastify/dist/ReactToastify.css';
@@ -42,6 +43,7 @@ return (
 
         </section>
         
+        <Footer></Footer>
     </>
 )
 }
