@@ -7,7 +7,12 @@ function App() {
   return (
     <>
       <Navigation></Navigation>
-      <Outlet></Outlet>
+
+      <main className='flex-grow'>
+
+        <Outlet></Outlet>
+
+      </main>
     </>
   )
 }
