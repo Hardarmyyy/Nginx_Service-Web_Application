@@ -9,7 +9,7 @@ return (
 
 <>
 
-    <section className='w-full h-full flex flex-col justify-center items-center font-Montserrat mx-auto'> 
+    <section className='w-full min-h-screen flex flex-col justify-center items-center font-Montserrat mx-auto'> 
         
         <h2 className='font-Jost font-bold mb-2 sm:text-4xl md:text-4xl tablet:text-5xl mini:text-5xl laptop:text-5xl super:text-6xl'> Page not found</h2>
 
