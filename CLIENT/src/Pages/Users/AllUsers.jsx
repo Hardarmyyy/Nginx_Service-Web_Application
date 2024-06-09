@@ -44,11 +44,13 @@ return (
         
             :
                 <>
-                    <section className='w-full super:w-3/4 min-h-screen flex flex-wrap items-center justify-center tablet:justify-start py-4 mx-auto content-center mini:grid mini:grid-cols-4 mini:gap-2 laptop:grid laptop:grid-cols-5 laptop:gap-2 super:grid super:grid-cols-6 super:gap-2'>
+                    <section className='w-full min-h-screen flex items-center justify-center py-4 mx-auto'>
+
+                        <div className='super:w-3/4 grid gap-4 grid-cols-1 tablet:grid-cols-3 mini:grid-cols-3 laptop:grid-cols-4 super:grid-cols-5'>
 
                         {allProfiles.map((profile) => 
 
-                            <div key={profile.userId} className='m-2 w-60'>
+                            <div key={profile.userId} className='m-2 w-full'>
 
                                 <ProfileCard
                                     userId={profile.userId}
@@ -63,6 +65,8 @@ return (
 
                             </div>
                         )}
+
+                        </div>
 
                     </section>
 
