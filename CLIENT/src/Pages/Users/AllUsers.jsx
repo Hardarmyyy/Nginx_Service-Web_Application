@@ -12,7 +12,11 @@ const status = useSelector((state) => state?.profiles?.status);
 if (status === 'Loading.......') {
     return (
         <>
-            <SkeletalLoading listToRender={6}></SkeletalLoading> 
+            <section className='w-full min-h-screen flex items-start justify-center py-4 px-2 mx-auto'>
+                <div className='w-3/4 tablet:w-full mini:w-full laptop:w-full super:w-4/5 grid gap-4 grid-cols-1 tablet:grid-cols-3 mini:grid-cols-3 laptop:grid-cols-4 super:grid-cols-5'>
+                    <SkeletalLoading listToRender={6}></SkeletalLoading> 
+                </div>
+            </section>
             <Footer></Footer>
         </>
     );
@@ -44,13 +48,13 @@ return (
         
             :
                 <>
-                    <section className='w-full min-h-screen flex items-center justify-center py-4 mx-auto'>
+                    <section className='w-full min-h-screen flex items-start justify-center py-4 px-2 mx-auto'>
 
-                        <div className='super:w-3/4 grid gap-4 grid-cols-1 tablet:grid-cols-3 mini:grid-cols-3 laptop:grid-cols-4 super:grid-cols-5'>
+                        <div className='w-3/4 tablet:w-full mini:w-full laptop:w-full super:w-4/5 grid gap-4 grid-cols-1 tablet:grid-cols-3 mini:grid-cols-3 laptop:grid-cols-4 super:grid-cols-5'>
 
                         {allProfiles.map((profile) => 
 
-                            <div key={profile.userId} className='m-2 w-full'>
+                            <div key={profile.userId} className='m-2 flex items-center justify-center'>
 
                                 <ProfileCard
                                     userId={profile.userId}

@@ -9,7 +9,7 @@ return (
 
 <>
 
-        <div className="max-w-xs">
+        <div className="w-full md:w-3/4">
 
             <div className="bg-white shadow-xl rounded-lg py-3 relative">
 
@@ -29,8 +29,8 @@ return (
                         <p> {role} </p>
                     </div>
 
-                    <div className="text-xs my-3 text-center px-2 flex justify-center items-center">
-                        <p className="text-gray-500 font-semibold mx-3"> Email </p>
+                    <div className="text-xs my-3 text-center px-2 flex flex-wrap justify-center items-center">
+                        <p className="text-gray-500 font-semibold mx-2"> Email </p>
                         <span className="flex flex-wrap items-center justify-center"> {email} </span>
                     </div>
 

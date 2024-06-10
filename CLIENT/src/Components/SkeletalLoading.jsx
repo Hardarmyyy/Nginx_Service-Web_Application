@@ -5,15 +5,12 @@ const SkeletalLoading = ({listToRender}) => {
 return (
 
 <>
-    <section className='w-full min-h-screen flex items-center justify-center py-4 mx-auto'>
-
-        <div className='super:w-3/4 grid gap-4 grid-cols-1 tablet:grid-cols-3 mini:grid-cols-3 laptop:grid-cols-4 super:grid-cols-5'>
 
         {Array(listToRender).fill(1).map((card, index) => 
 
-            <div key={index} className='m-2 w-full'>
+            <div key={index} className='m-2 flex items-center justify-center'>
 
-                <div role="status" className="max-w-xs flex flex-col justify-center items-center border border-gray-200 animate-pulse bg-white shadow-xl rounded-lg p-3 relative">
+                <div role="status" className="w-full md:w-3/4 flex flex-col justify-center items-center border border-gray-200 animate-pulse bg-white shadow-xl rounded-lg p-3 relative">
             
                     <svg
                         className="w-32 h-32 rounded-full mx-auto text-gray-400"
@@ -45,9 +42,6 @@ return (
         )
         }
 
-        </div>
-
-    </section>
 </>
 
 )
