@@ -8,7 +8,7 @@ pipeline {
 
             steps {
             
-                git branch: 'main', url: 'https://github.com/Hardarmyyy/Nginx_backend_server_05_09.git'
+                git branch: 'main', url: 'https://github.com/Hardarmyyy/Nginx_Service-Web_Application.git'
 
                 echo 'Source code from github repository'
             }
@@ -22,9 +22,9 @@ pipeline {
                 
                 dir('SERVER') {
                         
-                  sh 'npm install'
-              
-                  echo 'Installing dependencies'
+                    sh 'npm install'
+
+                    echo 'Installing dependencies'
                 }
 
             }
@@ -75,22 +75,22 @@ pipeline {
         }
 
         success {
-          
-          archiveArtifacts artifacts: '**', excludes: 'temp/**, *.log', allowEmptyArchive: true
+            
+            archiveArtifacts artifacts: '**', excludes: 'temp/**, *.log', allowEmptyArchive: true
 
-          echo 'Build successful! Artifacts archived.'
+            echo 'Build successful! Artifacts archived.'
 
-          //clean workspace
-          cleanWs()
+            //clean workspace
+            cleanWs()
 
         }
 
         failure {
 
-          echo 'Build failed. Check the logs for details.'
+            echo 'Build failed. Check the logs for details.'
 
-          //clean workspace                  
-          cleanWs()
+            //clean workspace                  
+            cleanWs()
         }
 
     }
