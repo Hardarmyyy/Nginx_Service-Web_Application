@@ -1,6 +1,5 @@
 const allowedOrigins = [
-    'http://localhost:5173',
-    'https://satyr-master-gnat.ngrok-free.app'
+    'https://nginx-web.twilightparadox.com/api'
 ] 
 
 module.exports = {
