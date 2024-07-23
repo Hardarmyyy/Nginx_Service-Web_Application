@@ -44,7 +44,7 @@ services:
     depends_on:
       - db
     volumes:
-      - gracefulshutdown-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
+      - server-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
 
   # MongoDB database
   db:
@@ -56,26 +56,23 @@ services:
     volumes:
       - mongo-data:/data/db  # # Mount a volume for persisting data on the db
 
-  # Web service
-  web:
-    build:
-      context: ./WEB-SERVICE # This specifies the directory for the dockerfile of the web service
-      dockerfile: Dockerfile
-    image: ${USERNAME}/nginx-gracefulshutdown-web-05-09
-    labels:
-      ${USERNAME}/nginx-gracefulshutdown-web-05-09: latest
-    container_name: nginx-backend-web
-    restart: always
+  proxy_manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy-manager
+    restart: unless-stopped
     networks:
       - gracefulshutdown-network
     env_file:
       - .env # ensure to point the path to the env file
-    ports: 
-      - "${WEBPORT}:80"  # container will be exposed to the outside on this port
+    ports:
+      - '${WEBPORT}:80'  # container will be exposed to the outside on this port
+      - '81:81'
     depends_on:
-      - server
       - client
     volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      - ./CONFIG/gracefulshutdown.conf:/data/nginx/custom/http_top.conf
       - dist:/usr/share/nginx/html/
 
 networks:
@@ -83,7 +80,7 @@ networks:
     driver: bridge
 
 volumes:
-  mongo-data: {}
-  gracefulshutdown-data: {}
   dist: {}
+  server-data: {}
+  mongo-data: {}
 
