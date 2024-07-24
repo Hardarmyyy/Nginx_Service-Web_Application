@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'http://localhost'
+    'http://localhost',
     'https://nginx-web.twilightparadox.com'
 ] 
 
