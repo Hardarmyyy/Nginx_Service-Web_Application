@@ -1,5 +1,5 @@
 const allowedOrigins = [
-    'https://nginx-web.twilightparadox.com/api'
+    'https://nginx-web.twilightparadox.com'
 ] 
 
 module.exports = {
