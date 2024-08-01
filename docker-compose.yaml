@@ -7,30 +7,27 @@ services:
     build:
       context: ./CLIENT # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
-    image: ${USERNAME}/nginx-gracefulshutdown-frontend-05-09
+    image: ${USERNAME}/nginx-web-frontend-app
     labels:
-      ${USERNAME}/nginx-gracefulshutdown-frontend-05-09: latest
-    container_name: nginx-backend-frontend
-    networks:
-      - gracefulshutdown-network
+      ${USERNAME}/nginx-web-frontend-app: latest
+    container_name: frontend
+    network_mode: "host"
     env_file:
       - .env # ensure to point the path to the env file
     environment:
       - "VITE_API_URI=${VITE_API_URI}" # EX. "VAR_NAME=value"
     depends_on:
       - server
-    volumes:
-      - dist:/gracefulshutdown-frontend/dist # Mount a volume for persisting data on the frontend
 
   # SERVER
   server:
     build:
       context: ./SERVER # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
-    image: ${USERNAME}/nginx-gracefulshutdown-server-05-09
+    image: ${USERNAME}/nginx-web-backend-app
     labels:
-      ${USERNAME}/nginx-gracefulshutdown-server-05-09: latest
-    container_name: nginx-backend-server
+      ${USERNAME}/nginx-web-backend-app: latest
+    container_name: backend
     restart: always
     networks:
       - gracefulshutdown-network
@@ -56,31 +53,11 @@ services:
     volumes:
       - mongo-data:/data/db  # # Mount a volume for persisting data on the db
 
-  proxy_manager:
-    image: 'jc21/nginx-proxy-manager:latest'
-    container_name: proxy-manager
-    restart: unless-stopped
-    networks:
-      - gracefulshutdown-network
-    env_file:
-      - .env # ensure to point the path to the env file
-    ports:
-      - '${WEBPORT}:80'  # container will be exposed to the outside on this port
-      - '81:81'
-    depends_on:
-      - client
-    volumes:
-      - ./data:/data
-      - ./letsencrypt:/etc/letsencrypt
-      - ./CONFIG/gracefulshutdown.conf:/data/nginx/custom/http_top.conf
-      - dist:/usr/share/nginx/html/
-
 networks:
   gracefulshutdown-network:
     driver: bridge
 
 volumes:
-  dist: {}
   server-data: {}
   mongo-data: {}
 
