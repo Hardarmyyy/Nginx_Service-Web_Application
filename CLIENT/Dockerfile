@@ -13,9 +13,11 @@ RUN npm install
 # Copy only the necessary files, excluding the 'node_modules' directory
 COPY . .
 
-RUN npm run build
-
 # Set environment variable for data persistence
 ENV VITE_API_URI=${VITE_API_URI}
+
+EXPOSE 5173
+
+CMD ["npm", "run", "dev"]
 
 
