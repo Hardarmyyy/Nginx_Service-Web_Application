@@ -54,16 +54,16 @@ return (
 
                         {allProfiles.map((profile) => 
 
-                            <div key={profile.userId} className='m-2 flex items-center justify-center'>
+                            <div key={profile?.userId} className='m-2 flex items-center justify-center'>
 
                                 <ProfileCard
-                                    userId={profile.userId}
-                                    src={profile.src}
-                                    firstName={profile.fName}
-                                    lastName={profile.lName}
-                                    role={profile.role}
-                                    email={profile.email}
-                                    github_url={profile.github_url}
+                                    userId={profile?.userId}
+                                    src={profile?.src}
+                                    firstName={profile?.fName}
+                                    lastName={profile?.lName}
+                                    role={profile?.role}
+                                    email={profile?.email}
+                                    github_url={profile?.github_url}
                                 >
                                 </ProfileCard>
 
