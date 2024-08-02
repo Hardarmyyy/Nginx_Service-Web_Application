@@ -1,23 +1,30 @@
 # Use an official Node.js runtime as a parent image
-FROM node:20-alpine
+FROM node:20-alpine AS client-development
 
 # Set the working directory in the container
+RUN mkdir /gracefulshutdown-frontend && chown node:node /gracefulshutdown-frontend
 WORKDIR /gracefulshutdown-frontend
+USER node
 
 # Copy package.json and package-lock.json to the working directory
-COPY package*.json ./
+RUN mkdir -p node_modules
+COPY --chown=node:node package*.json package*.json ./
 
 # Install app dependencies
-RUN npm install
+RUN npm install --silent
 
-# Copy only the necessary files, excluding the 'node_modules' directory
+FROM node:20-alpine AS client-builder
+USER node
+WORKDIR /gracefulshutdown-frontend
+
+# Copy only the necessary files
+COPY --from=client-development /gracefulshutdown-frontend/node_modules node_modules
 COPY . .
+USER root
+RUN npm run build
 
 # Set environment variable for data persistence
 ENV VITE_API_URI=${VITE_API_URI}
 
-EXPOSE 5173
-
-CMD ["npm", "run", "dev"]
 
 
