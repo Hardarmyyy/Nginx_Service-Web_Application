@@ -7,57 +7,84 @@ services:
     build:
       context: ./CLIENT # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
-    image: ${USERNAME}/nginx-web-frontend-app
+    image: ${USERNAME}/frontend
     labels:
-      ${USERNAME}/nginx-web-frontend-app: latest
+      - ${USERNAME}/frontend:latest
     container_name: frontend
-    network_mode: "host"
+    restart: always
+    networks:
+      - nginx-web
     env_file:
       - .env # ensure to point the path to the env file
     environment:
       - "VITE_API_URI=${VITE_API_URI}" # EX. "VAR_NAME=value"
     depends_on:
       - server
+    volumes:
+      - dist:/gracefulshutdown-frontend/dist # Mount a volume for persisting data on the frontend
 
   # SERVER
   server:
     build:
       context: ./SERVER # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
-    image: ${USERNAME}/nginx-web-backend-app
+    image: ${USERNAME}/backend
     labels:
-      ${USERNAME}/nginx-web-backend-app: latest
+      - ${USERNAME}/backend:latest
     container_name: backend
     restart: always
     networks:
-      - gracefulshutdown-network
+      - nginx-web
     env_file:
       - .env # ensure to point the path to the env file
-    ports: 
-    - "${PORT}:${PORT}" 
+    ports:
+    - "${PORT}:${PORT}"
     environment:
       - "PORT=${PORT}"
       - "MONGODB_URI=${MONGODB_URI}" # EX. "VAR_NAME=value"
     depends_on:
       - db
     volumes:
-      - server-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
+      - backend-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
 
   # MongoDB database
   db:
     image: mongo:4.4
-    container_name: nginx-backend-mongodb
+    container_name: mongodb
     restart: always
     networks:
-      - gracefulshutdown-network
+      - nginx-web
     volumes:
-      - mongo-data:/data/db  # # Mount a volume for persisting data on the db
+      - db-data:/data/db  # # Mount a volume for persisting data on the db
+
+  proxy_manager:
+    image: 'jc21/nginx-proxy-manager:latest'
+    container_name: proxy
+    restart: unless-stopped
+    networks:
+      - nginx-web
+    env_file:
+      - .env # ensure to point the path to the env file
+    ports:
+      - '${WEBPORT}:80'  # container will be exposed to the outside on this port
+      - '81:81'
+    depends_on:
+      - client
+      - server
+    volumes:
+      - ./data:/data
+      - ./letsencrypt:/etc/letsencrypt
+      - ./CONFIG/gracefulshutdown.conf:/data/nginx/custom/http_top.conf
+      - dist:/usr/share/nginx/html/
+
 
 networks:
-  gracefulshutdown-network:
+  nginx-web:
     driver: bridge
 
 volumes:
-  server-data: {}
-  mongo-data: {}
+  db-data: {}
+  backend-data: {}
+  dist: {}
+
 
