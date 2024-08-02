@@ -23,7 +23,9 @@ COPY . .
 USER root
 RUN npm run build
 
-# Set environment variable for data persistence
+# Set args and environment variable 
+ARG VITE_API_URI
+
 ENV VITE_API_URI=${VITE_API_URI}
 
 

@@ -7,6 +7,8 @@ services:
     build:
       context: ./CLIENT # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
+      args:
+        - "VITE_API_URI=${VITE_API_URI}"
     image: ${USERNAME}/frontend
     labels:
       - ${USERNAME}/frontend:latest
@@ -28,6 +30,9 @@ services:
     build:
       context: ./SERVER # This specifies the directory for the dockerfile of the server service
       dockerfile: Dockerfile
+      args:
+        - "PORT=${PORT}"
+        - "MONGODB_URI=${MONGODB_URI}"
     image: ${USERNAME}/backend
     labels:
       - ${USERNAME}/backend:latest

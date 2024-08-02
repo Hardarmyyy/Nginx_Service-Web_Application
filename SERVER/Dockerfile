@@ -17,7 +17,10 @@ COPY . .
 
 RUN pm2 update
 
-# Set environment variable for data persistence
+# Set args and environment variable 
+ARG PORT
+ARG MONGODB_URI
+
 ENV PORT=${PORT}
 ENV MONGODB_URI=${MONGODB_URI}
 
