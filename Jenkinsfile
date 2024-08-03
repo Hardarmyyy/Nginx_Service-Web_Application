@@ -43,7 +43,7 @@ pipeline {
                         sh 'cp $ENV_FILE .env'
                     }
                     // Run docker-compose with the environment file
-                    sh "docker-compose --env-file .env build"
+                    sh "docker-compose --env-file .env build --no-cache"
 
                 }
             }
