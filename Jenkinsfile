@@ -38,7 +38,7 @@ pipeline {
                 // Build Docker image with build-time environment arguments
                 script {
                     // Retrieve the .env file from Jenkins credentials
-                    withCredentials([file(credentialsId: 'env-file-2', variable: 'ENV_FILE')]) {
+                    withCredentials([file(credentialsId: 'env-nginx-staging', variable: 'ENV_FILE')]) {
                         // Copy the .env file to the desired location
                         sh 'cp $ENV_FILE .env'
                     }
