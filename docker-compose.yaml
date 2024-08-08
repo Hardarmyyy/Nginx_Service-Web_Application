@@ -20,10 +20,10 @@ services:
       - .env # ensure to point the path to the env file
     environment:
       - "VITE_API_URI=${VITE_API_URI}" # EX. "VAR_NAME=value"
+    ports:
+      - 5173:5173
     depends_on:
       - server
-    volumes:
-      - dist:/gracefulshutdown-frontend/dist # Mount a volume for persisting data on the frontend
 
   # SERVER
   server:
@@ -80,7 +80,6 @@ services:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
       - ./CONFIG/gracefulshutdown.conf:/data/nginx/custom/http_top.conf
-      - dist:/usr/share/nginx/html/
 
 
 networks:
@@ -90,6 +89,5 @@ networks:
 volumes:
   db-data: {}
   backend-data: {}
-  dist: {}
 
 
