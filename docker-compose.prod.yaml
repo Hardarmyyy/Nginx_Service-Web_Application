@@ -6,7 +6,7 @@ services:
   client:
     build:
       context: ./CLIENT # This specifies the directory for the dockerfile of the server service
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.prod
       args:
         - "VITE_API_URI=${VITE_API_URI}"
     image: ${USERNAME}/frontend
@@ -17,7 +17,7 @@ services:
     networks:
       - nginx-web
     env_file:
-      - .env # ensure to point the path to the env file
+      - .env.prod # ensure to point the path to the env file
     environment:
       - "VITE_API_URI=${VITE_API_URI}" # EX. "VAR_NAME=value"
     ports:
@@ -41,27 +41,16 @@ services:
     networks:
       - nginx-web
     env_file:
-      - .env # ensure to point the path to the env file
+      - .env.prod # ensure to point the path to the env file
     ports:
     - "${PORT}:${PORT}"
     environment:
       - "PORT=${PORT}"
       - "MONGODB_URI=${MONGODB_URI}" # EX. "VAR_NAME=value"
-    depends_on:
-      - db
     volumes:
       - backend-data:/gracefulshutdown/logs  # Mount a volume for persisting data on the server 
 
-  # MongoDB database
-  db:
-    image: mongo:4.4
-    container_name: mongodb
-    restart: always
-    networks:
-      - nginx-web
-    volumes:
-      - db-data:/data/db  # # Mount a volume for persisting data on the db
-
+  # PROXY_MANAGER
   proxy_manager:
     image: 'jc21/nginx-proxy-manager:latest'
     container_name: proxy
@@ -69,7 +58,7 @@ services:
     networks:
       - nginx-web
     env_file:
-      - .env # ensure to point the path to the env file
+      - .env.prod # ensure to point the path to the env file
     ports:
       - '${WEBPORT}:80'  # container will be exposed to the outside on this port
       - '81:81'
@@ -79,15 +68,13 @@ services:
     volumes:
       - ./data:/data
       - ./letsencrypt:/etc/letsencrypt
-      - ./CONFIG/gracefulshutdown.conf:/data/nginx/custom/http_top.conf
-
+      - ./CONFIG/nginx.conf:/data/nginx/custom/http_top.conf
 
 networks:
   nginx-web:
     driver: bridge
 
 volumes:
-  db-data: {}
   backend-data: {}
 
 
