@@ -58,7 +58,7 @@ pipeline {
 
                     sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
 
-                    sh "docker-compose -f docker-compose.prod.yaml push"
+                    sh "docker-compose -f docker-compose.prod.yaml --env-file .env.prod push"
 
                 }
             }
