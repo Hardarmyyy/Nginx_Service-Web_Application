@@ -40,10 +40,10 @@ pipeline {
                     // Retrieve the .env file from Jenkins credentials
                     withCredentials([file(credentialsId: 'env-nginx-staging', variable: 'ENV_FILE')]) {
                         // Copy the .env file to the desired location
-                        sh 'cp $ENV_FILE .env'
+                        sh 'cp $ENV_FILE .env.prod'
                     }
                     // Run docker-compose with the environment file
-                    sh "docker-compose -f docker-compose.prod.yaml --env-file .env build --no-cache"
+                    sh "docker-compose -f docker-compose.prod.yaml --env-file .env.prod build --no-cache"
 
                 }
             }
