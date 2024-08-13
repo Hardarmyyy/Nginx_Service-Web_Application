@@ -8,7 +8,7 @@ const AllUsers = () => {
 
 const allProfiles = useSelector((state) => state?.profiles?.allProfiles);
 const status = useSelector((state) => state?.profiles?.status);
-
+console.log(import.meta.env.VITE_API_URI)
 if (status === 'Loading.......') {
     return (
         <>
