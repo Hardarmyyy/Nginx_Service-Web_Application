@@ -43,7 +43,7 @@ pipeline {
                         sh 'cp $ENV_FILE .env'
                     }
                     // Run docker-compose with the environment file
-                    sh "docker-compose --env-file .env build --no-cache"
+                    sh "docker-compose -f docker-compose.prod.yaml --env-file .env build --no-cache"
 
                 }
             }
@@ -58,7 +58,7 @@ pipeline {
 
                     sh "echo \$DOCKER_PASSWORD | docker login -u \$DOCKER_USERNAME --password-stdin docker.io"
 
-                    sh "docker-compose push"
+                    sh "docker-compose -f docker-compose.prod.yaml push"
 
                 }
             }
