@@ -208,14 +208,14 @@ docker-compose -f docker-compose.prod.yaml --env-file .env.prod build
 docker login
 # Enter your username and use the generated token as password to login
 # After login, run the cmd below in the root directory to push the images to dockerhub
-docker-compose -f docker-compose.prod.yaml push
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod push
 ```
 
 #### Staring the application with docker-compose in detached mode
 
 ```bash
 # Run the cmd below in the root directory on your production server
-docker-compose -f docker-compose.prod.yaml up -d 
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod up -d 
 ```
 
 #### Accessing the application
