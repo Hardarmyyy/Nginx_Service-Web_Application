@@ -43,7 +43,7 @@
 ###  Getting Started
  -  To get started with the application, follow these steps:
 
-## ⚙ Installation
+### ⚙ Installation
 
 👉1: Ensure you have docker and docker-compose installed on your machine(Ubuntu or Windows Subsystem for Linux(WSL)):
 
@@ -101,13 +101,103 @@ USERNAME=<your dockerhub username> # Ex: dockerhub
 
 ### Usage 
 
-#### Building the docker images for the application
+#### Add the current user to docker group to run docker commands
 
 ```bash
 # Run the cmd below to add the current user to the docker group
 sudo usermod -aG docker $USER
+```
+---
+
+### Deployment in development
+
+#### In the root directory, create a folder named CONFIG and add the below nginx configuration file inside the CONFIG folder
+
+```bash
 # Run the cmd below in the root directory
-docker-compose --env-file .env build
+mkdir CONFIG
+cd CONFIG
+touch gracefulshutdown.conf
+
+server {
+    listen       80;
+    listen  [::]:80;
+    server_name  localhost;
+
+    #access_log  /var/log/nginx/host.access.log  main;
+
+    location / {
+        proxy_pass   http://client:5173;
+    }
+
+    location /api {
+        proxy_pass   http://server:4000;
+    }
+
+}
+
+```
+
+#### Starting the application in development mode
+
+```bash
+# Run the cmd below to start the application in development mode
+docker-compose -f docker-compose.dev.yaml up -d --build
+
+```
+---
+
+### Deployment for production
+
+#### In the root directory, under the CONFIG folder add the below nginx configuration file inside the CONFIG folder on the production server
+
+```bash
+# Run the cmd below in the root directory
+cd CONFIG
+touch nginx.conf
+
+# copy the below configuration inside the nginx.conf file
+upstream client {
+    server client:5173;
+}
+
+upstream server {
+    server server:4000;
+}
+
+server {
+    listen 80;
+
+    location / {
+        proxy_pass http://client;
+        proxy_http_version 1.1;
+        proxy_set_header Upgrade $http_upgrade;
+        proxy_set_header Connection "upgrade";
+        proxy_set_header X-Forwarded-Host $server_name;
+
+    }
+
+    location /api {
+        proxy_pass http://server;
+    }
+}
+
+server {
+    listen  80; 
+    server_name proxy.localhost;
+
+    location / {
+        proxy_pass http://proxy_manager:81;
+    }
+}
+
+```
+
+#### Building the docker images for production
+
+```bash
+# Run the cmd below in the root directory
+docker-compose -f docker-compose.prod.yaml --env-file .env.prod build 
 ```
 #### Deploying the docker images to dockerhub registery
 
@@ -118,55 +208,14 @@ docker-compose --env-file .env build
 docker login
 # Enter your username and use the generated token as password to login
 # After login, run the cmd below in the root directory to push the images to dockerhub
-docker-compose push
-```
-### Deployment
-
-### In the root directory, create a folder named CONFIG and add the below nginx configuration file inside the CONFIG folder
-
-```bash
-# Run the cmd below in the root directory
-mkdir CONFIG
-cd CONFIG
-touch gracefulshutdown.conf
-
-# copy the below configuration inside the gracefulshutdown.conf file
-server {
-    listen       80; 
-    listen  [::]:80;
-    server_name  localhost;
-
-    #access_log  /var/log/nginx/host.access.log  main;
-
-    root   /usr/share/nginx/html/;
-
-    location / {
-        try_files $uri $uri/ /index.html;
-    }
-
-    location /api {
-        proxy_pass   http://server:4000;
-    }
-
-}
-
-server {
-    listen       80; 
-    listen  [::]:80;
-    server_name proxy.localhost;
-
-    location / {
-        proxy_pass http://proxy_manager:81;
-    }
-}
-
+docker-compose -f docker-compose.prod.yaml push
 ```
 
 #### Staring the application with docker-compose in detached mode
 
 ```bash
-# Run the cmd below in the root directory
-docker-compose up -d 
+# Run the cmd below in the root directory on your production server
+docker-compose -f docker-compose.prod.yaml up -d 
 ```
 
 #### Accessing the application
